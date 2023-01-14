@@ -182,3 +182,45 @@ def game_dict():
             ]
         }
     }
+
+def get_all_players():
+  all_players =  game_dict()["home"]["players"] + game_dict()["away"]["players"]
+  return all_players
+
+def num_points_per_game(name):
+    for player in get_all_players():
+        if player["name"] == name:
+            return player["points_per_game"]
+
+def player_age(name):
+    for player in get_all_players():
+        if player["name"] == name:
+            return player["age"]
+
+def team_colors(team_name):
+    if team_name == "Cleveland Cavaliers":
+        return game_dict()["home"]["colors"]
+    if team_name == "Washington Wizards":
+        return game_dict()["away"]["colors"]
+
+def team_names():
+    return [game_dict()["home"]["team_name"], game_dict()["away"]["team_name"]]
+
+def player_numbers(team_name):
+    jersey_numbers = []
+    if team_name == "Cleveland Cavaliers":
+        for player in game_dict()["home"]["players"]:
+            jersey_numbers.append(player["number"])
+        
+    if team_name == "Washington Wizards":
+        for player in game_dict()["away"]["players"]:
+            jersey_numbers.append(player["number"])
+    return jersey_numbers
+
+def player_stats(name):
+    for player in get_all_players():
+        if player["name"] == name:
+            return player
+
+def average_rebounds_by_shoe_brand():
+    pass
